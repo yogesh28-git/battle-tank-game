@@ -31,9 +31,4 @@ public class TankMovement : MonoBehaviour
         else if ( rightInput )
             transform.Rotate( 0, tankTurn*Time.deltaTime, 0);
     }
-
-    public void SetInputFromUI( )
-    {
-
-    }
 }

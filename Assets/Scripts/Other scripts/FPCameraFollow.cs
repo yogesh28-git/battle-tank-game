@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class FPCameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField]private TankService tankservice;
+    private Transform player;
     private float offset;
     private float currentRot;
 
     private void Start( )
     {
+        player = tankservice.tankController.tankView.transform;
         offset = (player.position - transform.position).z;
         currentRot = player.eulerAngles.y;
     }

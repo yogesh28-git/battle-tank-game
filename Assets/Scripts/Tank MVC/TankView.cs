@@ -19,8 +19,11 @@ public class TankView : MonoBehaviour
     private bool leftInput = false;
     private bool rightInput = false;
 
-    public Rigidbody tankRigidBody;
-    public Rigidbody TankBody { get { return tankRigidBody; } }
+    [SerializeField] private Rigidbody tankRigidBody;
+    public Rigidbody GetTankRigidBody( ) 
+    {
+        return tankRigidBody;
+    }
 
     private void InputHandler( ) 
     {
@@ -33,6 +36,7 @@ public class TankView : MonoBehaviour
     {
         InputHandler( );
 
-
+        tankController.Move( forwardInput, backwardInput );
+        tankController.Rotate( leftInput, rightInput ); 
     }
 }

@@ -1,17 +1,13 @@
 using UnityEngine;
 
-public class TankModel : MonoBehaviour
+public class TankModel
 {
     private TankController tankController;
-
-
-    private void Start( )
-    {
-        Debug.Log( "Model created" );
-    }
-
     public void SetTankController(TankController _tankController )
     {
         tankController = _tankController;
     }
+
+    public float forwardForce { get { return 800; } private set { } }
+    public float rotationAmount { get { return 50; } private set { } }
 }

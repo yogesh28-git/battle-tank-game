@@ -8,11 +8,12 @@ public class TankService : MonoSingletonGeneric<TankService>
     }
 
     public TankModel tankModel { get; private set; }
+    public TankController tankController { get; private set; }
     [SerializeField] private TankView tankPrefab;
 
     private void Start( )
     {
         tankModel = new TankModel( );
-        TankController tankController = new TankController(tankModel, tankPrefab);
+        tankController = new TankController(tankModel, tankPrefab);
     }
 }
