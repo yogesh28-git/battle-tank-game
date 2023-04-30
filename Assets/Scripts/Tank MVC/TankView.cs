@@ -3,9 +3,18 @@ using UnityEngine;
 public class TankView : MonoBehaviour
 {
     private TankController tankController;
+
+    private bool forwardInput = false;
+    private bool backwardInput = false;
+    private bool leftInput = false;
+    private bool rightInput = false;
+
+    [SerializeField] private Rigidbody tankRigidBody;
+
     private void Start()
     {
         Debug.Log( "TankView has been instantiated! " + gameObject );
+
     }
 
     public void SetTankController( TankController _tankController )
@@ -13,13 +22,7 @@ public class TankView : MonoBehaviour
         tankController = _tankController;
     }
 
-    //Input Parameters
-    private bool forwardInput = false;
-    private bool backwardInput = false;
-    private bool leftInput = false;
-    private bool rightInput = false;
-
-    [SerializeField] private Rigidbody tankRigidBody;
+    
     public Rigidbody GetTankRigidBody( ) 
     {
         return tankRigidBody;
