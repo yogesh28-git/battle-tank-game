@@ -16,5 +16,5 @@ MonoBehaviour:
     type: 3}
   Health: 100
   MoveSpeed: 700
-  patrolStartPoint: {x: 0, y: 0, z: 0}
-  patrolEndPoint: {x: 0, y: 0, z: 0}
+  patrolStartPoint: {x: -40, y: 0, z: -40}
+  patrolEndPoint: {x: -40, y: 0, z: 0}
