@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecb422e15164934ca3773829f0aa98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankRigidBody: {fileID: 6698773912408095276}
+  playerRigidBody: {fileID: 6698773912408095276}
   bulletShooter: {fileID: 51047657}
 --- !u!1 &6698773913329782194
 GameObject:

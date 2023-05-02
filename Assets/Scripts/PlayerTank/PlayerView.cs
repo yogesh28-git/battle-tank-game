@@ -1,38 +1,27 @@
 using UnityEngine;
 
-
 namespace BattleTank.PlayerTank
 {
-    public class TankView : MonoBehaviour
+    public class PlayerView : MonoBehaviour
     {
-        private TankController tankController;
+        [SerializeField] private Rigidbody playerRigidBody;
+        [SerializeField] private BulletShooter bulletShooter;
 
+        private PlayerController playerController;
         private bool forwardInput = false;
         private bool backwardInput = false;
         private bool leftInput = false;
         private bool rightInput = false;
         private bool fireInput = false;
 
-        [SerializeField] private Rigidbody tankRigidBody;
-        [SerializeField] private BulletShooter bulletShooter;
-
-        private void Start( )
+        public void SetTankController( PlayerController _playerController )
         {
-            Debug.Log( "TankView has been instantiated! " + gameObject );
-
+            this.playerController = _playerController;
         }
-
-        public void SetTankController( TankController _tankController )
+        public Rigidbody GetPlayerRigidBody( )
         {
-            tankController = _tankController;
+            return this.playerRigidBody;
         }
-
-
-        public Rigidbody GetTankRigidBody( )
-        {
-            return tankRigidBody;
-        }
-
         private void InputHandler( )
         {
             forwardInput = Input.GetKey( KeyCode.W );
@@ -45,8 +34,8 @@ namespace BattleTank.PlayerTank
         {
             InputHandler( );
 
-            tankController.Move( forwardInput, backwardInput );
-            tankController.Rotate( leftInput, rightInput );
+            playerController.Move( forwardInput, backwardInput );
+            playerController.Rotate( leftInput, rightInput );
             if ( fireInput )
             {
                 this.bulletShooter.Shoot( );

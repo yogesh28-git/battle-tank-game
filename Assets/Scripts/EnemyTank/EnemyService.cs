@@ -4,12 +4,14 @@ namespace BattleTank.EnemyTank
 {
     public class EnemyService : MonoSingletonGeneric<EnemyService>
     {
-        [SerializeField] private MasterPatrolPointScriptableObject MasterPatrolPoint;
+        public EnemyController EnemyController { get; private set; }
+
+        [SerializeField] private MasterPatrolPointScriptableObject masterPatrolPoint;
         [SerializeField] private EnemyView enemyPrefab;
 
         private EnemyModel enemyModel;
         private EnemyView enemyView;
-        private EnemyController enemyController;
+        
 
         private void Awake( )
         {
@@ -17,13 +19,12 @@ namespace BattleTank.EnemyTank
         }
         private void Start( )
         {
-            int randIndex = ( int ) Random.Range( 0, MasterPatrolPoint.PatrolPoints.Length );
-            enemyView = GameObject.Instantiate<EnemyView>( enemyPrefab , MasterPatrolPoint.PatrolPoints[randIndex].Position, Quaternion.identity );
+            enemyView = GameObject.Instantiate<EnemyView>( enemyPrefab );
 
             enemyModel = new EnemyModel( );
-            enemyModel.SetStartingPoint( MasterPatrolPoint.PatrolPoints[randIndex] );
-            
-            enemyController = new EnemyController( enemyModel, enemyView );
+            enemyModel.SetMasterPatrolPoint( masterPatrolPoint );
+
+            EnemyController = new EnemyController( enemyModel, enemyView );
         }
     }
 }

@@ -4,8 +4,8 @@ namespace BattleTank.EnemyTank
 {
     public class EnemyController
     {
-        private EnemyModel enemyModel;
-        private EnemyView enemyView;
+        public EnemyModel EnemyModel { get; private set; }
+        public EnemyView EnemyView { get; private set; }
 
         private PatrolPointScriptableObject startingPoint;
         private PatrolPointScriptableObject targetPoint;
@@ -14,29 +14,33 @@ namespace BattleTank.EnemyTank
 
         public EnemyController(EnemyModel _enemyModel, EnemyView _enemyView )
         {
-            this.enemyModel = _enemyModel;
-            this.enemyView = _enemyView;
+            this.EnemyModel = _enemyModel;
+            this.EnemyView = _enemyView;
 
-            this.enemyModel.SetTankController( this );
-            this.enemyView.SetTankController( this );
+            this.EnemyView.SetTankController( this );
         }
-
+        public void SetInitialPosition( )
+        {
+            PatrolPointScriptableObject randPoint = EnemyModel.GetRandomPoint( );
+            EnemyView.transform.position = randPoint.Position;
+            EnemyModel.SetStartingPoint( randPoint );
+        }
         public void ResetPatrolPoints()
         {
-            this.startingPoint = enemyModel.GetStartingPoint( );
+            this.startingPoint = EnemyModel.GetStartingPoint( );
             int randNeighbourIndex = ( int ) Random.Range( 0, startingPoint.NeighbourPoints.Length );
             this.targetPoint = startingPoint.NeighbourPoints[randNeighbourIndex];
-            enemyModel.SetStartingPoint( targetPoint );
+            EnemyModel.SetStartingPoint( targetPoint );
             enemyFacingDirection = ( targetPoint.Position - startingPoint.Position ).normalized;
-            enemyView.transform.LookAt( targetPoint.Position );
+            EnemyView.transform.LookAt( targetPoint.Position );
         }
         public void EnemyPatrol()
         {
-            if ( ( enemyView.transform.position - targetPoint.Position ).sqrMagnitude < 1 )
+            if ( ( EnemyView.transform.position - targetPoint.Position ).sqrMagnitude < 1 )
             {
                 ResetPatrolPoints( );
             }
-            enemyView.transform.position += enemyFacingDirection * speed * Time.deltaTime;
+            EnemyView.transform.position += enemyFacingDirection * speed * Time.deltaTime;
         }
     }
 }

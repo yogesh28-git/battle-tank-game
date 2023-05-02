@@ -1,49 +1,53 @@
 using UnityEngine;
 
-public class BulletView : MonoBehaviour
+namespace BattleTank
 {
-    private float travelDistance = 10;
-    private Vector3 startPoint;
-    private Vector3 endPoint;
-    private Vector3 offset;
-    private GameObject shooterObject;
-    private float bulletSpeed = 20f;
-
-    public void SetShooterObject( GameObject tank )
+    public class BulletView : MonoBehaviour
     {
-        this.shooterObject = tank;
-    }
+        private float travelDistance = 10;
+        private Vector3 startPoint;
+        private Vector3 endPoint;
+        private Vector3 offset;
+        private GameObject shooterObject;
+        private float bulletSpeed = 20f;
 
-    private void Start( )
-    {
-        startPoint = transform.position;
-        offset = transform.forward * travelDistance;
-        endPoint = startPoint + offset;
-    }
-
-    private void Update( )
-    {
-        transform.position = Vector3.MoveTowards( transform.position, endPoint, bulletSpeed*Time.deltaTime);
-        if((endPoint - transform.position).sqrMagnitude < 0.1)
+        public void SetShooterObject( GameObject tank )
         {
-            Destroy( gameObject );
+            this.shooterObject = tank;
         }
-    }
 
-    private void OnTriggerEnter( Collider collidedObject )
-    {
-        if( collidedObject.gameObject != shooterObject.gameObject )
+        private void Start( )
         {
-            Destroy( gameObject );
+            startPoint = transform.position;
+            offset = transform.forward * travelDistance;
+            endPoint = startPoint + offset;
         }
-        
-        if(collidedObject.CompareTag("PlayerTank") && shooterObject.CompareTag( "EnemyTank" ) )
+
+        private void Update( )
         {
-            Debug.Log( "Player got hit" );
+            transform.position = Vector3.MoveTowards( transform.position, endPoint, bulletSpeed * Time.deltaTime );
+            if ( ( endPoint - transform.position ).sqrMagnitude < 0.1 )
+            {
+                Destroy( gameObject );
+            }
         }
-        else if ( collidedObject.CompareTag( "EnemyTank" ) && shooterObject.CompareTag( "PlayerTank" ) )
+
+        private void OnTriggerEnter( Collider collidedObject )
         {
-            Debug.Log( " Enemy got Hit" );
+            if ( collidedObject.gameObject != shooterObject.gameObject )
+            {
+                Destroy( gameObject );
+            }
+
+            if ( collidedObject.CompareTag( "PlayerTank" ) && shooterObject.CompareTag( "EnemyTank" ) )
+            {
+                Destroy( collidedObject );
+            }
+            else if ( collidedObject.CompareTag( "EnemyTank" ) && shooterObject.CompareTag( "PlayerTank" ) )
+            {
+                Destroy( collidedObject );
+            }
         }
     }
 }
+

@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class BulletShooter : MonoBehaviour
+namespace BattleTank
 {
-    [SerializeField] private BulletView bulletPrefab;
-    [SerializeField] private GameObject shooterTank;
-
-    public void Shoot( ) 
+    public class BulletShooter : MonoBehaviour
     {
-        BulletView bullet =  GameObject.Instantiate<BulletView>( bulletPrefab, transform.position, transform.rotation);
-        bullet.SetShooterObject( shooterTank );
+        [SerializeField] private BulletView bulletPrefab;
+        [SerializeField] private GameObject shooterTank;
+
+        public void Shoot( )
+        {
+            BulletView bullet = GameObject.Instantiate<BulletView>( bulletPrefab, transform.position, transform.rotation );
+            bullet.SetShooterObject( shooterTank );
+        }
     }
 }

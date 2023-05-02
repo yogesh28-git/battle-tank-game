@@ -1,24 +1,25 @@
 using UnityEngine;
 using BattleTank.PlayerTank;
 
-public class FPCameraFollow : MonoBehaviour
+namespace BattleTank
 {
-    [SerializeField]private TankService tankservice;
-    private Transform player;
-    private float currentRot;
-
-    private void Start( )
+    public class FPCameraFollow : MonoBehaviour
     {
-        player = tankservice.tankController.tankView.transform;
-        currentRot = player.eulerAngles.y;
+        [SerializeField] private PlayerService playerService;
+
+        private Transform player;
+
+        private void Start( )
+        {
+            player = playerService.PlayerController.PlayerView.transform;
+            Debug.Log( " ", player );
+        }
+
+        private void LateUpdate( )
+        {
+            transform.rotation = player.rotation;
+            transform.position = player.position;
+        }
     }
 
-    private void LateUpdate( )
-    {
-        float rotationAmount = player.eulerAngles.y - currentRot;
-        currentRot = player.eulerAngles.y;
-
-        transform.rotation = player.rotation;
-        transform.position = player.position;
-    }
 }

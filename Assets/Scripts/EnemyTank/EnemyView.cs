@@ -12,6 +12,7 @@ namespace BattleTank.EnemyTank
         }
         private void Start( )
         {
+            enemyController.SetInitialPosition( );
             enemyController.ResetPatrolPoints( );
         }
         private void Update( )
