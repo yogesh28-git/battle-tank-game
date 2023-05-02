@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 6698773913329782192, guid: aad490dde7fc4e34b997ba4efea6ffc2,
         type: 3}
       propertyPath: m_Name
-      value: Tank
+      value: BlueTank Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aad490dde7fc4e34b997ba4efea6ffc2, type: 3}

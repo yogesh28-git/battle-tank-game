@@ -6,9 +6,9 @@ namespace BattleTank.PlayerTank
     {
         public TankModel tankModel { get; private set; }
         public TankView tankView { get; private set; }
-        public TankController( TankModel _tankModel, TankView tankPrefab )
+        public TankController( TankModel _tankModel, TankView _tankView )
         {
-            tankView = GameObject.Instantiate<TankView>( tankPrefab );
+            tankView = _tankView;
             tankModel = _tankModel;
 
             tankView.SetTankController( this );

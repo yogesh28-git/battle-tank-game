@@ -19,7 +19,7 @@ namespace BattleTank.EnemyTank
         {
             int randIndex = ( int ) Random.Range( 0, MasterPatrolPoint.PatrolPoints.Length );
             enemyView = GameObject.Instantiate<EnemyView>( enemyPrefab , MasterPatrolPoint.PatrolPoints[randIndex].Position, Quaternion.identity );
-            
+
             enemyModel = new EnemyModel( );
             enemyModel.SetStartingPoint( MasterPatrolPoint.PatrolPoints[randIndex] );
             

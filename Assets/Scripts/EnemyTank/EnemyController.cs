@@ -10,7 +10,7 @@ namespace BattleTank.EnemyTank
         private PatrolPointScriptableObject startingPoint;
         private PatrolPointScriptableObject targetPoint;
         private Vector3 enemyFacingDirection;
-        private float speed = 50f;
+        private float speed = 5f;
 
         public EnemyController(EnemyModel _enemyModel, EnemyView _enemyView )
         {

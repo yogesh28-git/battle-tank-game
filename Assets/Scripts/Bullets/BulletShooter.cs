@@ -3,9 +3,11 @@ using UnityEngine;
 public class BulletShooter : MonoBehaviour
 {
     [SerializeField] private BulletView bulletPrefab;
+    [SerializeField] private GameObject shooterTank;
 
     public void Shoot( ) 
     {
-        GameObject.Instantiate( bulletPrefab, transform.position, transform.rotation);
+        BulletView bullet =  GameObject.Instantiate<BulletView>( bulletPrefab, transform.position, transform.rotation);
+        bullet.SetShooterObject( shooterTank );
     }
 }
