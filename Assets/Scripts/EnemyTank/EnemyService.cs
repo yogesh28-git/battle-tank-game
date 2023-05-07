@@ -1,4 +1,5 @@
 using UnityEngine;
+using BattleTank.PlayerTank;
 
 namespace BattleTank.EnemyTank
 {
@@ -8,6 +9,7 @@ namespace BattleTank.EnemyTank
 
         [SerializeField] private MasterPatrolPointScriptableObject masterPatrolPoint;
         [SerializeField] private EnemyView enemyPrefab;
+        [SerializeField] private PlayerService player;
 
         private EnemyModel enemyModel;
         private EnemyView enemyView;
@@ -20,6 +22,7 @@ namespace BattleTank.EnemyTank
         private void Start( )
         {
             enemyView = GameObject.Instantiate<EnemyView>( enemyPrefab );
+            enemyView.SetPlayer( player.PlayerController.PlayerView );
 
             enemyModel = new EnemyModel( );
             enemyModel.SetMasterPatrolPoint( masterPatrolPoint );

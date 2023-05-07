@@ -5,12 +5,12 @@ namespace BattleTank
     public class BulletShooter : MonoBehaviour
     {
         [SerializeField] private BulletView bulletPrefab;
-        [SerializeField] private GameObject shooterTank;
+        [SerializeField] private Transform shootPoint;
 
         public void Shoot( )
         {
-            BulletView bullet = GameObject.Instantiate<BulletView>( bulletPrefab, transform.position, transform.rotation );
-            bullet.SetShooterObject( shooterTank );
+            BulletView bullet = GameObject.Instantiate<BulletView>( bulletPrefab, shootPoint.position, shootPoint.rotation );
+            bullet.SetShooterObject( this.gameObject );
         }
     }
 }
