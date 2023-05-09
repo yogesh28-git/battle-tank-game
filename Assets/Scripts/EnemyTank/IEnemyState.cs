@@ -7,5 +7,7 @@ namespace BattleTank.EnemyTank
         public void OnStateUpdate( );
 
         public void OnStateExit( );
+
+        public TankStates GetState( );
     }
 }

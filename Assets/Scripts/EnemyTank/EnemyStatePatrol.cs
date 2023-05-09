@@ -8,20 +8,28 @@ namespace BattleTank.EnemyTank
         {
             this.enemyController = _enemyController;
             this.enemyView = enemyController.EnemyView;
+
+            enemyController.SetInitialPosition( );
+            enemyController.ResetPatrolPoints( );
         }
         public void OnStateEnter( )
         {
-            
+            enemyController.ResetPatrolPoints( );
         }
 
         public void OnStateUpdate( )
         {
-            
+            enemyController.EnemyPatrol( );
         }
 
         public void OnStateExit( )
         {
 
+        }
+
+        public TankStates GetState( )
+        {
+            return TankStates.PATROL_STATE;
         }
     }
 }

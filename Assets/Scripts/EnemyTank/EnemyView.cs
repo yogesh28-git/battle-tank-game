@@ -6,21 +6,21 @@ namespace BattleTank.EnemyTank
 {
     public class EnemyView : MonoBehaviour
     {
+
         [SerializeField] private ParticleSystem deathEffect;
         [SerializeField] private BulletShooter bulletShooter;
 
         private PlayerView player;
-
         private EnemyController enemyController;
 
-        private bool isPlayerInRange = false;  //I will use states for enemy once I learn it.
-        private bool isFiring = false;
-
         private IEnemyState currentState;
-        private EnemyStateIdle idleState;
         private EnemyStatePatrol patrolState;
         private EnemyStateChase chaseState;
         private EnemyStateAttack attackState;
+
+        private float playerSqrDistance;
+        private float chaseSqrRadius = 225f;
+        private float attackSqrRadius = 81f;
 
         public void SetTankController( EnemyController _enemyController )
         {
@@ -36,40 +36,41 @@ namespace BattleTank.EnemyTank
         }
         private void Start( )
         {
-            idleState = new EnemyStateIdle( this.enemyController );
             patrolState = new EnemyStatePatrol( this.enemyController );
             chaseState = new EnemyStateChase( this.enemyController );
             attackState = new EnemyStateAttack( this.enemyController );
-            currentState = idleState;
-
-            enemyController.SetInitialPosition( );
-            enemyController.ResetPatrolPoints( );
+            
+            currentState = patrolState;
         }
         private void Update( )
         {
-            isPlayerInRange = ( this.transform.position - player.transform.position ).sqrMagnitude <= 100;
-            if ( !isPlayerInRange )
+            currentState.OnStateUpdate( );
+
+            CheckStateChanges( );  
+        }
+
+        private void CheckStateChanges( )
+        {
+            playerSqrDistance = ( this.transform.position - player.transform.position ).sqrMagnitude;
+
+            if ( playerSqrDistance < attackSqrRadius && currentState.GetState( ) != TankStates.ATTACK_STATE )
             {
-                enemyController.EnemyPatrol( );
+                ChangeState( attackState );
             }
-            else
+            else if ( playerSqrDistance < chaseSqrRadius && currentState.GetState( ) != TankStates.CHASE_STATE )
             {
-                transform.LookAt( player.transform.position );
-                if ( !isFiring )
-                {
-                    StartCoroutine( ShootRepeating( 1f ) );
-                    isFiring = true;
-                }
+                ChangeState( chaseState );
+            }
+            else if ( currentState.GetState( ) != TankStates.PATROL_STATE )
+            {
+                ChangeState( patrolState );
             }
         }
-        
-        private IEnumerator ShootRepeating( float shootDelay)
+        private void ChangeState( IEnemyState newState )
         {
-            while ( isPlayerInRange )
-            {
-                bulletShooter.Shoot( );
-                yield return new WaitForSeconds( shootDelay );
-            }
+            currentState.OnStateExit( );
+            currentState = newState;
+            currentState.OnStateEnter( );
         }
     }
 }

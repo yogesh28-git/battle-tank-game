@@ -23,6 +23,11 @@ namespace BattleTank.EnemyTank
         {
 
         }
+
+        public TankStates GetState( )
+        {
+            return TankStates.ATTACK_STATE;
+        }
     }
 }
 

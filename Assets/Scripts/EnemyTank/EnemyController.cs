@@ -41,6 +41,7 @@ namespace BattleTank.EnemyTank
                 ResetPatrolPoints( );
             }
             EnemyView.transform.position += enemyFacingDirection * speed * Time.deltaTime;
+            EnemyView.transform.LookAt( targetPoint.Position );
         }
     }
 }

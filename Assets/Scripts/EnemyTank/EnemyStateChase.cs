@@ -23,6 +23,11 @@ namespace BattleTank.EnemyTank
         {
 
         }
+
+        public TankStates GetState( )
+        {
+            return TankStates.CHASE_STATE;
+        }
     }
 }
 
