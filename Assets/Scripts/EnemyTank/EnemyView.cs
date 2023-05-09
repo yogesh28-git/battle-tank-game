@@ -19,8 +19,8 @@ namespace BattleTank.EnemyTank
         private EnemyStateAttack attackState;
 
         private float playerSqrDistance;
-        private float chaseSqrRadius = 225f;
-        private float attackSqrRadius = 81f;
+        private float chaseSqrRadius = 900f;
+        private float attackSqrRadius = 100f;
 
         public void SetTankController( EnemyController _enemyController )
         {
@@ -29,6 +29,10 @@ namespace BattleTank.EnemyTank
         public void SetPlayer(PlayerView player)
         {
             this.player = player;
+        }
+        public BulletShooter GetBulletShooter( )
+        {
+            return bulletShooter;
         }
         public void Death( )
         {
@@ -53,23 +57,27 @@ namespace BattleTank.EnemyTank
         {
             playerSqrDistance = ( this.transform.position - player.transform.position ).sqrMagnitude;
 
-            if ( playerSqrDistance < attackSqrRadius && currentState.GetState( ) != TankStates.ATTACK_STATE )
+            if ( playerSqrDistance < attackSqrRadius)
             {
-                ChangeState( attackState );
+                if(currentState.GetState( ) != TankStates.ATTACK_STATE )
+                    ChangeState( attackState );
             }
-            else if ( playerSqrDistance < chaseSqrRadius && currentState.GetState( ) != TankStates.CHASE_STATE )
+            else if ( playerSqrDistance < chaseSqrRadius)
             {
-                ChangeState( chaseState );
+                if( currentState.GetState( ) != TankStates.CHASE_STATE )
+                    ChangeState( chaseState );
             }
-            else if ( currentState.GetState( ) != TankStates.PATROL_STATE )
-            {
-                ChangeState( patrolState );
+            else
+            {   
+                if ( currentState.GetState( ) != TankStates.PATROL_STATE )
+                    ChangeState( patrolState );
             }
         }
         private void ChangeState( IEnemyState newState )
         {
             currentState.OnStateExit( );
             currentState = newState;
+            Debug.Log( "State : " + currentState.GetState( ) );
             currentState.OnStateEnter( );
         }
     }

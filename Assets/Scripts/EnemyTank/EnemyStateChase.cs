@@ -4,7 +4,7 @@ namespace BattleTank.EnemyTank
     {
         private EnemyView enemyView;
         private EnemyController enemyController;
-        public EnemyStateChase( EnemyController _enemyController )
+        public EnemyStateChase( EnemyController _enemyController)
         {
             this.enemyController = _enemyController;
             this.enemyView = enemyController.EnemyView;
@@ -16,7 +16,7 @@ namespace BattleTank.EnemyTank
 
         public void OnStateUpdate( )
         {
-
+            enemyController.ChaseThePlayer( );
         }
 
         public void OnStateExit( )

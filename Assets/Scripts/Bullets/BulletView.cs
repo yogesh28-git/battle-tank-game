@@ -43,13 +43,12 @@ namespace BattleTank
 
             if ( collidedObject.CompareTag( "PlayerTank" ) && shooterObject.CompareTag( "EnemyTank" ) )
             {
-                Debug.Log( "Player is Hit", shooterObject.gameObject );
-                collidedObject.gameObject.GetComponent<PlayerView>( ).Death( shooterObject.gameObject );
+                collidedObject.gameObject.GetComponent<PlayerView>( ).Death(shooterObject.gameObject);
             }
             else if ( collidedObject.CompareTag( "EnemyTank" ) && shooterObject.CompareTag( "PlayerTank" ) )
             {
-                collidedObject.gameObject.GetComponent<EnemyView>( ).Death( );
-                Destroy( collidedObject.gameObject,0.5f );
+                collidedObject.gameObject.GetComponent<EnemyView>().Death( );
+                Destroy( collidedObject.gameObject ,1f);
             }
         }
     }

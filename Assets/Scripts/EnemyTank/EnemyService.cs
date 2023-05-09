@@ -22,12 +22,11 @@ namespace BattleTank.EnemyTank
         private void Start( )
         {
             enemyView = GameObject.Instantiate<EnemyView>( enemyPrefab );
-            enemyView.SetPlayer( player.PlayerController.PlayerView );
 
             enemyModel = new EnemyModel( );
             enemyModel.SetMasterPatrolPoint( masterPatrolPoint );
 
-            EnemyController = new EnemyController( enemyModel, enemyView );
+            EnemyController = new EnemyController( enemyModel, enemyView, player.PlayerController.PlayerView );
         }
     }
 }
