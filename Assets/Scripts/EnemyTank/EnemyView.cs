@@ -16,6 +16,12 @@ namespace BattleTank.EnemyTank
         private bool isPlayerInRange = false;  //I will use states for enemy once I learn it.
         private bool isFiring = false;
 
+        private IEnemyState currentState;
+        private EnemyStateIdle idleState;
+        private EnemyStatePatrol patrolState;
+        private EnemyStateChase chaseState;
+        private EnemyStateAttack attackState;
+
         public void SetTankController( EnemyController _enemyController )
         {
             this.enemyController = _enemyController;
@@ -30,6 +36,12 @@ namespace BattleTank.EnemyTank
         }
         private void Start( )
         {
+            idleState = new EnemyStateIdle( this.enemyController );
+            patrolState = new EnemyStatePatrol( this.enemyController );
+            chaseState = new EnemyStateChase( this.enemyController );
+            attackState = new EnemyStateAttack( this.enemyController );
+            currentState = idleState;
+
             enemyController.SetInitialPosition( );
             enemyController.ResetPatrolPoints( );
         }
