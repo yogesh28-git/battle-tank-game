@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using BattleTank.EnemyTank;
 using System.Collections;
 
@@ -20,6 +21,10 @@ namespace BattleTank.PlayerTank
         private bool rightInput = false;
         private bool fireInput = false;
 
+        private int bulletCount = 0;
+
+        public static event Action<int> OnAchievementUnlock;
+
         public void SetTankController( PlayerController _playerController )
         {
             this.playerController = _playerController;
@@ -32,7 +37,7 @@ namespace BattleTank.PlayerTank
         {
             StartCoroutine( DestroyEverything( enemy ) );
         }
-        public void SetArtModelsList( GameObject[] artModelsList)
+        public void SetArtModelsList( GameObject[] artModelsList )
         {
             this.artModelsList = artModelsList;
         }
@@ -53,6 +58,15 @@ namespace BattleTank.PlayerTank
             if ( fireInput )
             {
                 this.bulletShooter.Shoot( );
+                bulletCount++;
+                CheckForAchievement( bulletCount );
+            }
+        }
+        private void CheckForAchievement( int bullets )
+        {
+            if ( bullets == 10 || bullets == 25 || bullets == 50 )
+            {
+                OnAchievementUnlock?.Invoke( bullets );
             }
         }
         private IEnumerator DestroyEverything( GameObject enemy )
@@ -68,7 +82,7 @@ namespace BattleTank.PlayerTank
             Destroy( enemy.gameObject );
 
             yield return new WaitForSeconds( 1.5f );
-            for(int i=0; i<artModelsList.Length; i++ )
+            for ( int i = 0; i < artModelsList.Length; i++ )
             {
                 Destroy( artModelsList[i] );
                 yield return new WaitForSeconds( 1f );
