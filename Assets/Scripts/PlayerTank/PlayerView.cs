@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using BattleTank.EnemyTank;
+using BattleTank.Bullets;
 using System.Collections;
 
 namespace BattleTank.PlayerTank
@@ -9,8 +10,8 @@ namespace BattleTank.PlayerTank
     {
         [SerializeField] private Rigidbody playerRigidBody;
         [SerializeField] private ParticleSystem deathEffect;
-        [SerializeField] private BulletShooter bulletShooter;
         [SerializeField] private GameObject tankRenderer;
+        [SerializeField] private Transform shootPoint;
 
         private GameObject[] artModelsList;
 
@@ -57,7 +58,7 @@ namespace BattleTank.PlayerTank
             playerController.Rotate( leftInput, rightInput );
             if ( fireInput )
             {
-                this.bulletShooter.Shoot( );
+                BulletService.Instance.Shoot( this.gameObject, this.shootPoint);
                 bulletCount++;
                 CheckForAchievement( bulletCount );
             }

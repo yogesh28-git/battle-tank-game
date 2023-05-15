@@ -2,7 +2,7 @@ using UnityEngine;
 using BattleTank.EnemyTank;
 using BattleTank.PlayerTank;
 
-namespace BattleTank
+namespace BattleTank.Bullets
 {
     public class BulletView : MonoBehaviour
     {
@@ -18,7 +18,7 @@ namespace BattleTank
             this.shooterObject = tank;
         }
 
-        private void Start( )
+        private void OnEnable( )
         {
             startPoint = transform.position;
             offset = transform.forward * travelDistance;
@@ -30,7 +30,7 @@ namespace BattleTank
             transform.position = Vector3.MoveTowards( transform.position, endPoint, bulletSpeed * Time.deltaTime );
             if ( ( endPoint - transform.position ).sqrMagnitude < 0.1 )
             {
-                Destroy( gameObject );
+                BulletService.Instance.ReturnToPool( this );
             }
         }
 
@@ -38,7 +38,7 @@ namespace BattleTank
         {
             if ( collidedObject.gameObject != shooterObject.gameObject )
             {
-                Destroy( gameObject );
+                BulletService.Instance.ReturnToPool( this );
             }
 
             if ( collidedObject.CompareTag( "PlayerTank" ) && shooterObject.CompareTag( "EnemyTank" ) )

@@ -8,7 +8,7 @@ namespace BattleTank.EnemyTank
     {
 
         [SerializeField] private ParticleSystem deathEffect;
-        [SerializeField] private BulletShooter bulletShooter;
+        [SerializeField] private Transform shootPoint;
 
         private PlayerView player;
         private EnemyController enemyController;
@@ -30,9 +30,9 @@ namespace BattleTank.EnemyTank
         {
             this.player = player;
         }
-        public BulletShooter GetBulletShooter( )
+        public Transform GetShootPoint( )
         {
-            return bulletShooter;
+            return shootPoint;
         }
         public void Death( )
         {

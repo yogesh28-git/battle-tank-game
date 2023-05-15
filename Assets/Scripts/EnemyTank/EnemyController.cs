@@ -1,5 +1,6 @@
 using UnityEngine;
 using BattleTank.PlayerTank;
+using BattleTank.Bullets;
 
 namespace BattleTank.EnemyTank
 {
@@ -13,7 +14,7 @@ namespace BattleTank.EnemyTank
         private PlayerView playerRef;
         private Vector3 enemyFacingDirection;
         private float speed = 5f;
-        private BulletShooter bulletShooter;
+        private Transform shootPoint;
 
         public EnemyController(EnemyModel _enemyModel, EnemyView _enemyView, PlayerView _playerRef )
         {
@@ -23,7 +24,7 @@ namespace BattleTank.EnemyTank
 
             this.EnemyView.SetTankController( this );
             this.EnemyView.SetPlayer( playerRef );
-            this.bulletShooter = EnemyView.GetBulletShooter( );
+            this.shootPoint = EnemyView.GetShootPoint( );
         }
         public void SetInitialPosition( )
         {
@@ -67,7 +68,7 @@ namespace BattleTank.EnemyTank
             EnemyView.transform.LookAt( playerPos );
             if ( timer > delay )
             {
-                bulletShooter.Shoot( );
+                BulletService.Instance.Shoot( EnemyView.gameObject, this.shootPoint );
                 return 0;
             }
             return timer + Time.deltaTime;
