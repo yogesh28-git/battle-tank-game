@@ -95,6 +95,24 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8243880749113285993, guid: aad490dde7fc4e34b997ba4efea6ffc2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aad490dde7fc4e34b997ba4efea6ffc2, type: 3}
+--- !u!198 &54502506899486500 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 956083020, guid: aad490dde7fc4e34b997ba4efea6ffc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 54502507851816040}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3013928466695384655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2959496371883799079, guid: aad490dde7fc4e34b997ba4efea6ffc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 54502507851816040}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644906064784183768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c6bfc9d74c0ab498dc0a60fa3a3bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6644906064784183768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6698773913329782192, guid: aad490dde7fc4e34b997ba4efea6ffc2,
@@ -113,3 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed64c18102dbc02499396ac9e3d95fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffect: {fileID: 54502506899486500}
+  bulletShooter: {fileID: 3013928466695384655}

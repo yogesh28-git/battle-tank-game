@@ -1,4 +1,6 @@
 using UnityEngine;
+using BattleTank.EnemyTank;
+using BattleTank.PlayerTank;
 
 namespace BattleTank
 {
@@ -41,11 +43,12 @@ namespace BattleTank
 
             if ( collidedObject.CompareTag( "PlayerTank" ) && shooterObject.CompareTag( "EnemyTank" ) )
             {
-                Destroy( collidedObject );
+                collidedObject.gameObject.GetComponent<PlayerView>( ).Death(shooterObject.gameObject);
             }
             else if ( collidedObject.CompareTag( "EnemyTank" ) && shooterObject.CompareTag( "PlayerTank" ) )
             {
-                Destroy( collidedObject );
+                collidedObject.gameObject.GetComponent<EnemyView>().Death( );
+                Destroy( collidedObject.gameObject ,1f);
             }
         }
     }
