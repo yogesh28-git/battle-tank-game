@@ -14,34 +14,36 @@ namespace BattleTank.EnemyTank
         private float speed;
         private Transform shootPoint;
 
-        public EnemyController(EnemyModel _enemyModel, EnemyView _enemyView, PlayerView _playerRef )
+        public EnemyController(EnemyModel _enemyModel, EnemyView _enemyView )
         {
             this.EnemyModel = _enemyModel;
             this.EnemyView = _enemyView;
-            this.playerRef = _playerRef;
+            this.playerRef = PlayerService.Instance.PlayerController.PlayerView;
 
             this.EnemyView.SetTankController( this );
-            this.EnemyView.SetPlayer( playerRef );
             this.shootPoint = EnemyView.GetShootPoint( );
             this.speed = EnemyModel.MoveSpeed;
         }
         public void SetInitialPosition( )
         {
             EnemyView.transform.position = EnemyModel.GetStartingPoint( );
+            Debug.Log( EnemyModel.GetStartingPoint( ) );
         }
         public void ResetPatrolPoints()
         {
             EnemyModel.UpdateStartingPoint( );
             this.targetPos = EnemyModel.GetStartingPoint( );
+            Debug.Log( targetPos );
         }
         public void EnemyPatrol()
         {
-            if ( ( EnemyView.transform.position - targetPos ).sqrMagnitude < 1 )
+            Vector3 currentPos = EnemyView.transform.position;
+
+            if ( ( currentPos - targetPos ).sqrMagnitude < 1 )
             {
                 ResetPatrolPoints( );
             }
-            Vector3 currentPos = EnemyView.transform.position;
-
+            
             Vector3 newEnemyPos = Vector3.MoveTowards( currentPos, targetPos, speed * Time.deltaTime );
             EnemyView.transform.LookAt( targetPos );
 

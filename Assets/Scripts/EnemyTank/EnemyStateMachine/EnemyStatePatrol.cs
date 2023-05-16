@@ -6,7 +6,6 @@ namespace BattleTank.EnemyTank
         public EnemyStatePatrol(EnemyController _enemyController)
         {
             this.enemyController = _enemyController;
-
             enemyController.SetInitialPosition( );
             enemyController.ResetPatrolPoints( );
         }

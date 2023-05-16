@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 200823b70d3f03f48921037d2351a58a, type: 3}
-  m_Name: EnemyTank1
+  m_Name: FastEnemy
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2003574279528322058, guid: 2e0f5fa09a343be41be505ff55d76fa7,
+  EnemyPrefab: {fileID: 5175974499984557678, guid: 106377bd7fb6d294daf2c2ce7139fc3a,
     type: 3}
-  Health: 100
-  MoveSpeed: 700
-  patrolStartPoint: {x: -40, y: 0, z: -40}
-  patrolEndPoint: {x: -40, y: 0, z: 0}
+  MoveSpeed: 20
+  Health: 40
+  Attack: 0

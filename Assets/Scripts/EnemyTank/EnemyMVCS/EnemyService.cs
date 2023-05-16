@@ -8,12 +8,10 @@ namespace BattleTank.EnemyTank
         public EnemyController EnemyController { get; private set; }
 
         [SerializeField] private MasterPatrolPointScriptableObject masterPatrolPoint;
-        [SerializeField] private EnemyView enemyPrefab;
-        [SerializeField] private PlayerService player;
+        [SerializeField] private EnemyScriptableObject[] enemyObjectList;
 
         private EnemyModel enemyModel;
         private EnemyView enemyView;
-        
 
         private void Awake( )
         {
@@ -21,12 +19,24 @@ namespace BattleTank.EnemyTank
         }
         private void Start( )
         {
-            enemyView = GameObject.Instantiate<EnemyView>( enemyPrefab );
 
-            enemyModel = new EnemyModel( );
-            enemyModel.SetMasterPatrolPoint( masterPatrolPoint );
+            int randomCount = ( int ) Random.Range( 1, 4 );
+            for ( int i = 0; i < randomCount; i++ )
+            {
+                CreateRandomEnemyTank( );
+            }
+        }
+        
+        private void CreateRandomEnemyTank( )
+        {
+            int tankIndex = ( int ) Random.Range( 0, enemyObjectList.Length );
+            EnemyScriptableObject enemyObject = enemyObjectList[tankIndex];
 
-            EnemyController = new EnemyController( enemyModel, enemyView, player.PlayerController.PlayerView );
+            enemyView = GameObject.Instantiate<EnemyView>( enemyObject.EnemyPrefab );
+
+            enemyModel = new EnemyModel( masterPatrolPoint );
+
+            EnemyController = new EnemyController( enemyModel, enemyView );
         }
     }
 }

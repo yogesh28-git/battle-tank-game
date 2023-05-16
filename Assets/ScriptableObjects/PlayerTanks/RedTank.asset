@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6a5a97379d8fb4586f8232323289ff, type: 3}
   m_Name: RedTank
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 1893857305433976342, guid: d62f4c90b1c5d424a8cc8baf8d682ac5,
+  PlayerPrefab: {fileID: 434060329467454287, guid: d62f4c90b1c5d424a8cc8baf8d682ac5,
     type: 3}
-  MoveSpeed: 50
-  Health: 30
-  Attack: 0
+  MoveSpeed: 20
+  TurnSpeed: 60
+  Health: 100
+  Attack: 10

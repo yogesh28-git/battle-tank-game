@@ -10,8 +10,8 @@ namespace BattleTank.EnemyTank
         [SerializeField] private ParticleSystem deathEffect;
         [SerializeField] private Transform shootPoint;
 
-        private PlayerView player;
         private EnemyController enemyController;
+        private PlayerView player;
 
         private IEnemyState currentState;
         private EnemyStatePatrol patrolState;
@@ -26,10 +26,6 @@ namespace BattleTank.EnemyTank
         {
             this.enemyController = _enemyController;
         }
-        public void SetPlayer(PlayerView player)
-        {
-            this.player = player;
-        }
         public Transform GetShootPoint( )
         {
             return shootPoint;
@@ -40,6 +36,7 @@ namespace BattleTank.EnemyTank
         }
         private void Start( )
         {
+            player = PlayerService.Instance.PlayerController.PlayerView;
             patrolState = new EnemyStatePatrol( this.enemyController );
             chaseState = new EnemyStateChase( this.enemyController );
             attackState = new EnemyStateAttack( this.enemyController );
@@ -50,7 +47,7 @@ namespace BattleTank.EnemyTank
         {
             currentState.OnStateUpdate( );
 
-            CheckStateChanges( );  
+            //CheckStateChanges( );  
         }
 
         private void CheckStateChanges( )

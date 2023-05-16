@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6a5a97379d8fb4586f8232323289ff, type: 3}
   m_Name: GreenTank
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 2815715316887728563, guid: bd423f95f12b26e41a41a22ce64514ca,
+  PlayerPrefab: {fileID: 6724499324626173099, guid: 0dcd816d2d5547d41b19fe2e311b6de7,
     type: 3}
-  MoveSpeed: 30
-  Health: 500
-  Attack: 0
+  MoveSpeed: 16
+  TurnSpeed: 40
+  Health: 160
+  Attack: 20

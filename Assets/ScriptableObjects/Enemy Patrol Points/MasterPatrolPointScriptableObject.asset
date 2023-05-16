@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c741b00ad414994297d2947ba3678c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 83e84929b367a804cb2833213a220073, type: 3}
   m_Name: MasterPatrolPointScriptableObject
   m_EditorClassIdentifier: 
   PatrolPoints:
   - {fileID: 11400000, guid: 42bfcfbaa283364448758153da3de20d, type: 2}
   - {fileID: 11400000, guid: ed7d77103f9a0e34db91be56060c0caf, type: 2}
+  - {fileID: 11400000, guid: 7dcb473e50ca41a4194df3010d01d4a4, type: 2}
+  - {fileID: 11400000, guid: f46cc0115548ac944a0f7b78db044785, type: 2}
+  - {fileID: 11400000, guid: 59972afe454f8f049ab6e9cbb2d4d63d, type: 2}
   - {fileID: 11400000, guid: c1ab1ec6a61513442be1aa2d140ed9bb, type: 2}
