@@ -217,6 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObjectList:
   - {fileID: 11400000, guid: b990d29e5b0712646b87a3abc9bc9eb7, type: 2}
+  - {fileID: 11400000, guid: 3a54ddac5791ff54fbedff42b89bdc87, type: 2}
+  - {fileID: 11400000, guid: 5ac01281291120248a587912a7db6145, type: 2}
 --- !u!1 &730276159
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,9 +264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterPatrolPoint: {fileID: 11400000, guid: fb913dc1e0f9b0a41a9eb8a0be33c3bf, type: 2}
-  enemyPrefab: {fileID: 5175974499984557678, guid: 106377bd7fb6d294daf2c2ce7139fc3a,
-    type: 3}
-  player: {fileID: 702635214}
+  enemyObjectList:
+  - {fileID: 11400000, guid: bbc898797535fdb41b3d7da0415744dc, type: 2}
+  - {fileID: 11400000, guid: c757e5d1150c17149bc15b6d1fac1e2e, type: 2}
 --- !u!1 &915409750
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1104483655
 MonoBehaviour:
   m_ObjectHideFlags: 0

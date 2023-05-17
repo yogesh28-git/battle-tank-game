@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace BattleTank.EnemyTank
 {
-    public class EnemyView : MonoBehaviour
+    public class EnemyView : MonoBehaviour,ITank
     {
 
         [SerializeField] private ParticleSystem deathEffect;
@@ -30,10 +30,11 @@ namespace BattleTank.EnemyTank
         {
             return shootPoint;
         }
-        public void Death( )
+        public IDamagable GetController( )
         {
-            deathEffect.Play( );
+            return enemyController;
         }
+
         private void Start( )
         {
             player = PlayerService.Instance.PlayerController.PlayerView;
@@ -47,7 +48,7 @@ namespace BattleTank.EnemyTank
         {
             currentState.OnStateUpdate( );
 
-            //CheckStateChanges( );  
+            CheckStateChanges( );  
         }
 
         private void CheckStateChanges( )
@@ -74,7 +75,6 @@ namespace BattleTank.EnemyTank
         {
             currentState.OnStateExit( );
             currentState = newState;
-            Debug.Log( "State : " + currentState.GetState( ) );
             currentState.OnStateEnter( );
         }
     }

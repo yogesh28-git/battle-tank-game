@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BattleTank.PlayerTank
 {
-    public class PlayerController
+    public class PlayerController : IDamagable
     {
         public PlayerModel PlayerModel { get; private set; }
         public PlayerView PlayerView { get; private set; }
@@ -28,6 +28,24 @@ namespace BattleTank.PlayerTank
         {
             float turnSpeed = PlayerModel.TurnSpeed;
             playerTransform.Rotate( 0, horizontal * turnSpeed * Time.deltaTime, 0 );
+        }
+        public GameObject GetGameObject()
+        {
+            return PlayerView.gameObject;
+        }
+        public int GiveDamage( )
+        {
+            return PlayerModel.Attack;
+        }
+        public void TakeDamage( int damage )
+        {
+            int health = PlayerModel.Health - damage;
+            health = health >= 0 ? health : 0;
+            PlayerModel.SetHealth( health );
+        }
+        public void Death( )
+        {
+            PlayerView.gameObject.SetActive( false );
         }
         private void GetReferences( )
         {

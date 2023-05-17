@@ -4,16 +4,24 @@ namespace BattleTank.EnemyTank
 {
     public class EnemyModel
     {
-        public float MoveSpeed { get { return 20; } private set { } }
+        public float MoveSpeed { get; private set; }
         public int Health { get; private set; }
         public int Attack { get; private set; }
 
         private PatrolPointScriptableObject startingPoint;
         private MasterPatrolPointScriptableObject masterPatrolPoint;
-        public EnemyModel( MasterPatrolPointScriptableObject _masterPatrolPoint )
+        public EnemyModel( EnemyScriptableObject enemyObject, MasterPatrolPointScriptableObject _masterPatrolPoint )
         {
             this.masterPatrolPoint = _masterPatrolPoint;
             startingPoint = GetRandomPoint( );
+
+            this.MoveSpeed = enemyObject.MoveSpeed;
+            this.Health = enemyObject.Health;
+            this.Attack = enemyObject.Attack;
+        }
+        public void SetHealth( int value )
+        {
+            this.Health = value;
         }
         public PatrolPointScriptableObject GetRandomPoint() 
         {

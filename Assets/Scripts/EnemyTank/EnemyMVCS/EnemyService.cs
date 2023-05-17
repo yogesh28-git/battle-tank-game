@@ -34,7 +34,7 @@ namespace BattleTank.EnemyTank
 
             enemyView = GameObject.Instantiate<EnemyView>( enemyObject.EnemyPrefab );
 
-            enemyModel = new EnemyModel( masterPatrolPoint );
+            enemyModel = new EnemyModel( enemyObject, masterPatrolPoint );
 
             EnemyController = new EnemyController( enemyModel, enemyView );
         }

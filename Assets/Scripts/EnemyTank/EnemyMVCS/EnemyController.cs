@@ -4,7 +4,7 @@ using BattleTank.Bullets;
 
 namespace BattleTank.EnemyTank
 {
-    public class EnemyController
+    public class EnemyController: IDamagable
     {
         public EnemyModel EnemyModel { get; private set; }
         public EnemyView EnemyView { get; private set; }
@@ -27,13 +27,11 @@ namespace BattleTank.EnemyTank
         public void SetInitialPosition( )
         {
             EnemyView.transform.position = EnemyModel.GetStartingPoint( );
-            Debug.Log( EnemyModel.GetStartingPoint( ) );
         }
         public void ResetPatrolPoints()
         {
             EnemyModel.UpdateStartingPoint( );
             this.targetPos = EnemyModel.GetStartingPoint( );
-            Debug.Log( targetPos );
         }
         public void EnemyPatrol()
         {
@@ -67,10 +65,29 @@ namespace BattleTank.EnemyTank
             EnemyView.transform.LookAt( playerPos );
             if ( timer > delay )
             {
-                BulletService.Instance.Shoot( EnemyView.gameObject, this.shootPoint );
+                BulletService.Instance.Shoot( this , this.shootPoint );
                 return 0;
             }
             return timer + Time.deltaTime;
+        }
+        public GameObject GetGameObject( )
+        {
+            return EnemyView.gameObject;
+        }
+        public int GiveDamage( )
+        {
+            return EnemyModel.Attack;
+        }
+        public void TakeDamage( int damage )
+        {
+            Debug.Log( "Enemy got hit" );
+            int health = EnemyModel.Health - damage;
+            health = health >= 0 ? health : 0;
+            EnemyModel.SetHealth( health );
+        }
+        public void Death( )
+        {
+            //async await
         }
     }
 }

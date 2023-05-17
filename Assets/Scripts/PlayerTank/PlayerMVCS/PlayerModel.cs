@@ -16,6 +16,10 @@ namespace BattleTank.PlayerTank
             this.Health = playerObject.Health;
             this.Attack = playerObject.Attack;
         }
+        public void SetHealth( int value )
+        {
+            this.Health = value;
+        }
     }
 
 }

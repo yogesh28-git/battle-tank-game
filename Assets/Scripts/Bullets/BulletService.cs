@@ -14,7 +14,7 @@ namespace BattleTank.Bullets
             return bulletView;
         }
 
-        public void Shoot( GameObject shooterObject, Transform shootPoint )
+        public void Shoot( IDamagable shooterObject, Transform shootPoint )
         {
             BulletView bullet = GetFromPool( shootPoint );
             bullet.SetShooterObject( shooterObject );

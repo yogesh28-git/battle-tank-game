@@ -3,7 +3,7 @@ using TMPro;
 using System.Collections;
 using BattleTank.PlayerTank;
 
-namespace BattleTank
+namespace BattleTank.UI
 {
     public class UIService : MonoSingletonGeneric<UIService>
     {

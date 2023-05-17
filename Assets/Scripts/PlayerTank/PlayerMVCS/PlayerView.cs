@@ -1,12 +1,10 @@
 using UnityEngine;
 using System;
-using BattleTank.EnemyTank;
 using BattleTank.Bullets;
-using System.Collections;
 
 namespace BattleTank.PlayerTank
 {
-    public class PlayerView : MonoBehaviour
+    public class PlayerView : MonoBehaviour,ITank
     {
         [SerializeField] private Rigidbody playerRigidBody;
         [SerializeField] private ParticleSystem tankExplosion;
@@ -30,9 +28,9 @@ namespace BattleTank.PlayerTank
         {
             return this.playerRigidBody;
         }
-        public void Death( GameObject enemy )
+        public IDamagable GetController( )
         {
-            //implement this
+            return playerController;
         }
 
         private void Update( )
@@ -42,7 +40,7 @@ namespace BattleTank.PlayerTank
             playerController.Rotate( horizontalInput );
             if ( fireInput )
             {
-                BulletService.Instance.Shoot( this.gameObject, this.shootPoint);
+                BulletService.Instance.Shoot( this.playerController, this.shootPoint);
                 bulletCount++;
                 CheckForAchievement( bulletCount );
             }

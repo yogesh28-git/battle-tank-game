@@ -10,12 +10,12 @@ namespace BattleTank.Bullets
         private Vector3 startPoint;
         private Vector3 endPoint;
         private Vector3 offset;
-        private GameObject shooterObject;
+        private IDamagable shooter;
         private float bulletSpeed = 20f;
 
-        public void SetShooterObject( GameObject tank )
+        public void SetShooterObject( IDamagable tankController )
         {
-            this.shooterObject = tank;
+            this.shooter = tankController;
         }
 
         private void OnEnable( )
@@ -34,22 +34,22 @@ namespace BattleTank.Bullets
             }
         }
 
-        private void OnTriggerEnter( Collider collidedObject )
+        private void OnTriggerEnter( Collider collider )
         {
-            if ( collidedObject.gameObject != shooterObject.gameObject )
-            {
-                BulletService.Instance.ReturnToPool( this );
+            if ( collider.gameObject == shooter.GetGameObject( ) )
+            { 
+                return;
             }
 
-            if ( collidedObject.CompareTag( "PlayerTank" ) && shooterObject.CompareTag( "EnemyTank" ) )
+            ITank collidedTank = collider.GetComponent<ITank>( );
+
+            if( collidedTank != null )
             {
-                collidedObject.gameObject.GetComponent<PlayerView>( ).Death(shooterObject.gameObject);
+                IDamagable collidedController = collidedTank.GetController( );
+                collidedController.TakeDamage( shooter.GiveDamage( ) );
             }
-            else if ( collidedObject.CompareTag( "EnemyTank" ) && shooterObject.CompareTag( "PlayerTank" ) )
-            {
-                collidedObject.gameObject.GetComponent<EnemyView>().Death( );
-                Destroy( collidedObject.gameObject ,1f);
-            }
+
+            BulletService.Instance.ReturnToPool( this );
         }
     }
 }
