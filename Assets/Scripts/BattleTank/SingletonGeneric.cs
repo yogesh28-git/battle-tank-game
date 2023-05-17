@@ -2,14 +2,17 @@ namespace BattleTank
 {
     public class SingletonGeneric<T> where T : SingletonGeneric<T>
     {
-        public static T Instance { get; private set; }
-
-        public SingletonGeneric( )
+        public static T Instance 
         {
-            if(Instance == null )
-            {
-                Instance = new SingletonGeneric<T>() as T;
-            }
+            get 
+            { 
+                if(Instance == null )
+                {
+                    Instance = new SingletonGeneric<T>( ) as T;
+                }
+                return Instance;
+            } 
+            private set { } 
         }
     }
 }

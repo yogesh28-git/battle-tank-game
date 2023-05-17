@@ -34,6 +34,10 @@ namespace BattleTank.EnemyTank
         {
             return enemyController;
         }
+        public int GetHealth( )
+        {
+            return enemyController.EnemyModel.Health;
+        }
 
         private void Start( )
         {

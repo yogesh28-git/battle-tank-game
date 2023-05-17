@@ -33,6 +33,11 @@ namespace BattleTank.PlayerTank
             return playerController;
         }
 
+        public int GetHealth( ) 
+        {
+            return playerController.PlayerModel.Health;
+        }
+
         private void Update( )
         {
             HandleInputs( );

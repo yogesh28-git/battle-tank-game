@@ -417,7 +417,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   healthBar: {fileID: 2260621036176861523}
-  tankType: 0
+  boxCollider: {fileID: 4875575110001554352}
   fill: {fileID: 2260621035005720874}
 --- !u!1 &2260621036494010093
 GameObject:
