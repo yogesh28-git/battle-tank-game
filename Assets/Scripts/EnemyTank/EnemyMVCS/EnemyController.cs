@@ -1,6 +1,8 @@
 using UnityEngine;
 using BattleTank.PlayerTank;
 using BattleTank.Bullets;
+using BattleTank.EventSystem;
+using System.Threading.Tasks;
 
 namespace BattleTank.EnemyTank
 {
@@ -13,6 +15,7 @@ namespace BattleTank.EnemyTank
         private PlayerView playerRef;
         private float speed;
         private Transform shootPoint;
+        private int BULLET_HIT_SCORE = 1;
 
         public EnemyController(EnemyModel _enemyModel, EnemyView _enemyView )
         {
@@ -84,10 +87,22 @@ namespace BattleTank.EnemyTank
             int health = EnemyModel.Health - damage;
             health = health >= 0 ? health : 0;
             EnemyModel.SetHealth( health );
+
+            EventService.Instance.OnBulletHit.InvokeEvent( BULLET_HIT_SCORE );
+
+            if (health == 0 )
+            {
+                Death( );
+            }
         }
-        public void Death( )
+        public async void Death( )
         {
-            //async await
+            EventService.Instance.OnEnemyDeath.InvokeEvent( EnemyModel.Score );
+            EnemyView.PlayDeathEffect( );
+            await Task.Delay( 1000 );
+            EnemyView.DestroyTank( );
+            await Task.Delay( 5000 );
+            EnemyService.Instance.CreateRandomEnemyTank( );
         }
     }
 }

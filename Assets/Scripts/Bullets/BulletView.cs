@@ -1,6 +1,4 @@
 using UnityEngine;
-using BattleTank.EnemyTank;
-using BattleTank.PlayerTank;
 
 namespace BattleTank.Bullets
 {

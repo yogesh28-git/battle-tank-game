@@ -1,18 +1,20 @@
+using UnityEngine;
 namespace BattleTank
 {
-    public class SingletonGeneric<T> where T : SingletonGeneric<T>
+    public class SingletonGeneric<T> where T : SingletonGeneric<T>, new()
     {
+        private static T instance;
         public static T Instance 
         {
             get 
-            { 
-                if(Instance == null )
+            {
+                if ( instance == null )
                 {
-                    Instance = new SingletonGeneric<T>( ) as T;
+                    instance = new T();
                 }
-                return Instance;
+                return instance;
             } 
-            private set { } 
+            private set { }
         }
     }
 }

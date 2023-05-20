@@ -1,6 +1,5 @@
 using UnityEngine;
 using BattleTank.PlayerTank;
-using System.Collections;
 
 namespace BattleTank.EnemyTank
 {
@@ -37,6 +36,14 @@ namespace BattleTank.EnemyTank
         public int GetHealth( )
         {
             return enemyController.EnemyModel.Health;
+        }
+        public void PlayDeathEffect( )
+        {
+            deathEffect.Play( );
+        }
+        public void DestroyTank( )
+        {
+            Destroy( this.gameObject );
         }
 
         private void Start( )

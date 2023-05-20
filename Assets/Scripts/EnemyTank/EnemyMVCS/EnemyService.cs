@@ -1,5 +1,4 @@
 using UnityEngine;
-using BattleTank.PlayerTank;
 
 namespace BattleTank.EnemyTank
 {
@@ -27,7 +26,7 @@ namespace BattleTank.EnemyTank
             }
         }
         
-        private void CreateRandomEnemyTank( )
+        public void CreateRandomEnemyTank( )
         {
             int tankIndex = ( int ) Random.Range( 0, enemyObjectList.Length );
             EnemyScriptableObject enemyObject = enemyObjectList[tankIndex];

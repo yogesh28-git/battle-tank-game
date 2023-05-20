@@ -12,5 +12,7 @@ namespace BattleTank.EnemyTank
         public int Health;
 
         public int Attack;
+
+        public int Score;
     }
 }

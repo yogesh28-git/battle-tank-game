@@ -1,20 +1,21 @@
-﻿using UnityEngine;
-
-namespace BattleTank.EventSystem
+﻿namespace BattleTank.EventSystem
 {
     public class EventService: SingletonGeneric<EventService> 
     {
-        public EventController<int> OnBulletsHit;
+        public EventController<int> OnBulletHit;
 
-        public EventController OnNewHighScore;
+        public EventController<int> OnEnemyDeath;
 
-        public EventController OnEnemiesKilled;
+        public EventController<string> OnAchievementUnlock;
+
+        public EventController OnPlayerDeath;
 
         public EventService( )
         {
-            OnBulletsHit = new EventController<int>( );
-            OnNewHighScore = new EventController( );
-            OnEnemiesKilled = new EventController( );
+            OnBulletHit = new EventController<int>( );
+            OnEnemyDeath = new EventController<int>( );
+            OnAchievementUnlock = new EventController<string>( );
+            OnPlayerDeath = new EventController( );
         }
     }
 }

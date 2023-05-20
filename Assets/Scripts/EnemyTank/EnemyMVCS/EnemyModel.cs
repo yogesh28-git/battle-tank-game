@@ -8,6 +8,8 @@ namespace BattleTank.EnemyTank
         public int Health { get; private set; }
         public int Attack { get; private set; }
 
+        public int Score { get; private set; }
+
         private PatrolPointScriptableObject startingPoint;
         private MasterPatrolPointScriptableObject masterPatrolPoint;
         public EnemyModel( EnemyScriptableObject enemyObject, MasterPatrolPointScriptableObject _masterPatrolPoint )
@@ -18,6 +20,7 @@ namespace BattleTank.EnemyTank
             this.MoveSpeed = enemyObject.MoveSpeed;
             this.Health = enemyObject.Health;
             this.Attack = enemyObject.Attack;
+            this.Score = enemyObject.Score;
         }
         public void SetHealth( int value )
         {

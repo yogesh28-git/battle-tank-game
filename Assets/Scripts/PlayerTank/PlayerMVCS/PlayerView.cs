@@ -37,6 +37,14 @@ namespace BattleTank.PlayerTank
         {
             return playerController.PlayerModel.Health;
         }
+        public void PlayDeathEffect( )
+        {
+            tankExplosion.Play( );
+        }
+        public void DestroyTank( )
+        {
+            Destroy( this.gameObject );
+        }
 
         private void Update( )
         {

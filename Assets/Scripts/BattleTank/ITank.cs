@@ -5,5 +5,9 @@
         public IDamagable GetController( );
 
         public int GetHealth( );
+
+        public void PlayDeathEffect( );
+
+        public void DestroyTank( );
     }    
 }

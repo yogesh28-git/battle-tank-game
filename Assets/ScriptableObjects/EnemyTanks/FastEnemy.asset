@@ -17,3 +17,4 @@ MonoBehaviour:
   MoveSpeed: 5
   Health: 40
   Attack: 10
+  Score: 10
