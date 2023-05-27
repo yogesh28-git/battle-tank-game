@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6a5a97379d8fb4586f8232323289ff, type: 3}
   m_Name: BlueTank
   m_EditorClassIdentifier: 
-  TankPrefab: {fileID: 3571381393160872194, guid: 9b2aaae9ef6aff641b63befa9293d8e8,
+  PlayerPrefab: {fileID: 775419888491645998, guid: d069a398e2a2c9848a699ff2c786fbeb,
     type: 3}
-  Health: 500
-  MoveSpeed: 650
+  MoveSpeed: 13
+  TurnSpeed: 20
+  Health: 240
+  Attack: 30

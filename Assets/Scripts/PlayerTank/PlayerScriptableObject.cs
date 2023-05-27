@@ -5,9 +5,15 @@ namespace BattleTank.PlayerTank
     [CreateAssetMenu( fileName = "PlayerScriptableObject", menuName = "ScriptableObjects/New PlayerScriptableObject" )]
     public class PlayerScriptableObject : ScriptableObject
     {
-        public PlayerView TankPrefab;
-        public int Health;
+        public PlayerView PlayerPrefab;
+
         public float MoveSpeed;
+
+        public float TurnSpeed;
+
+        public int Health;
+        
+        public int Attack;
     }
 }
 

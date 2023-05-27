@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200823b70d3f03f48921037d2351a58a, type: 3}
+  m_Name: FastEnemy
+  m_EditorClassIdentifier: 
+  EnemyPrefab: {fileID: 5175974499984557678, guid: 106377bd7fb6d294daf2c2ce7139fc3a,
+    type: 3}
+  MoveSpeed: 5
+  Health: 40
+  Attack: 10
+  Score: 10

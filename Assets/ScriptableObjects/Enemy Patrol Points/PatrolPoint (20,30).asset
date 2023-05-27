@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 985bd4b4eb5b6f644b3c3081253c63e3, type: 3}
+  m_Script: {fileID: 11500000, guid: f993bbf37c5498940be0356d5152c94d, type: 3}
   m_Name: PatrolPoint (20,30)
   m_EditorClassIdentifier: 
   Position: {x: 20, y: 0, z: 30}
   NeighbourPoints:
   - {fileID: 11400000, guid: f46cc0115548ac944a0f7b78db044785, type: 2}
-  - {fileID: 11400000, guid: ed7d77103f9a0e34db91be56060c0caf, type: 2}

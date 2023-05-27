@@ -1,8 +1,6 @@
 using UnityEngine;
-using BattleTank.EnemyTank;
-using BattleTank.PlayerTank;
 
-namespace BattleTank
+namespace BattleTank.Bullets
 {
     public class BulletView : MonoBehaviour
     {
@@ -10,15 +8,15 @@ namespace BattleTank
         private Vector3 startPoint;
         private Vector3 endPoint;
         private Vector3 offset;
-        private GameObject shooterObject;
+        private IDamagable shooter;
         private float bulletSpeed = 20f;
 
-        public void SetShooterObject( GameObject tank )
+        public void SetShooterObject( IDamagable tankController )
         {
-            this.shooterObject = tank;
+            this.shooter = tankController;
         }
 
-        private void Start( )
+        private void OnEnable( )
         {
             startPoint = transform.position;
             offset = transform.forward * travelDistance;
@@ -30,26 +28,26 @@ namespace BattleTank
             transform.position = Vector3.MoveTowards( transform.position, endPoint, bulletSpeed * Time.deltaTime );
             if ( ( endPoint - transform.position ).sqrMagnitude < 0.1 )
             {
-                Destroy( gameObject );
+                BulletService.Instance.ReturnToPool( this );
             }
         }
 
-        private void OnTriggerEnter( Collider collidedObject )
+        private void OnTriggerEnter( Collider collider )
         {
-            if ( collidedObject.gameObject != shooterObject.gameObject )
-            {
-                Destroy( gameObject );
+            if ( collider.gameObject == shooter.GetGameObject( ) )
+            { 
+                return;
             }
 
-            if ( collidedObject.CompareTag( "PlayerTank" ) && shooterObject.CompareTag( "EnemyTank" ) )
+            ITank collidedTank = collider.GetComponent<ITank>( );
+
+            if( collidedTank != null )
             {
-                collidedObject.gameObject.GetComponent<PlayerView>( ).Death(shooterObject.gameObject);
+                IDamagable collidedController = collidedTank.GetController( );
+                collidedController.TakeDamage( shooter.GiveDamage( ) );
             }
-            else if ( collidedObject.CompareTag( "EnemyTank" ) && shooterObject.CompareTag( "PlayerTank" ) )
-            {
-                collidedObject.gameObject.GetComponent<EnemyView>().Death( );
-                Destroy( collidedObject.gameObject ,1f);
-            }
+
+            BulletService.Instance.ReturnToPool( this );
         }
     }
 }
